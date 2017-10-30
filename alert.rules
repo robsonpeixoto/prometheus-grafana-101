@@ -1,0 +1,3 @@
+ALERT TooManyRequestInprogress
+  IF inprogress_requests_number >= 4
+  FOR 30s

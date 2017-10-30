@@ -1,0 +1,4 @@
+Flask==0.12.2
+prometheus_client==0.0.21
+redis==2.10.6
+gevent==1.2.2

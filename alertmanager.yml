@@ -1,0 +1,16 @@
+global:
+  smtp_smarthost: 'mailhog:1025'
+  smtp_from: 'alertmanager@example.org'
+  smtp_require_tls: false
+
+templates:
+- '/etc/alertmanager/template/*.tmpl'
+
+route:
+  receiver: team-X-mails
+
+receivers:
+- name: 'team-X-mails'
+  email_configs:
+  - to: 'team-X+alerts@example.org'
+    send_resolved: true

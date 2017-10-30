@@ -1,0 +1,58 @@
+version: '3'
+services:
+
+  web:
+    build: ./py
+    ports:
+    - "5000:5000"
+    volumes:
+    - './py:/code'
+
+  redis:
+    image: "redis:4.0.2-alpine"
+    volumes:
+      - './data/redis:/data'
+
+  redis-exporter:
+    image: "oliver006/redis_exporter:v0.13"
+    command: ['--redis.addr=redis:6379']
+    ports:
+      - '9121:9121'
+
+  prometheus:
+    image: prom/prometheus:v1.8.1
+    ports:
+      - '9090:9090'
+    volumes:
+      - './data/prometheus:/prometheus' 
+      - './prometheus.yml:/etc/prometheus/prometheus.yml'
+      - './alert.rules:/etc/prometheus/alert.rules'
+
+  alertmanger:
+    image: prom/alertmanager:v0.9.1
+    ports:
+      - '9093:9093'
+    volumes:
+      - './data/alertmanager:/alertmanager' 
+      - './alertmanager.yml:/etc/alertmanager/config.yml'
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.0
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+
+  grafana:
+    image: grafana/grafana:4.6.0
+    ports:
+      - '3000:3000'
+    volumes:
+      - './data/grafana:/var/lib/grafana' 
+
+  wrk:
+    image: williamyeh/wrk:4.0.2
+    command:
+      - '-c 10'
+      - '-t 4'
+      - '-d 300'
+      - 'http://web:5000/'
