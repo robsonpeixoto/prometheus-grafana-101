@@ -8,17 +8,22 @@ from flask import Flask, Response
 from gevent.wsgi import WSGIServer
 from prometheus_client import (
     CONTENT_TYPE_LATEST,
+    Counter,
     Histogram,  # Summary
-    Gauge,  # Counter
+    Gauge,
     generate_latest)
 from redis import Redis
 
 app = Flask(__name__)
 redis = Redis(host='redis', port=6379)
 
+REDIS_COUNT = Counter(
+    'redis_hit_number',
+    'Quantidade de vezes que o redis foi acessado')
+
 REDIS_TIME = Histogram(
     'redis_inc_seconds',
-    'Time to increment a redis key in seconds',
+    'Tempo necessario para incrementar uma chave no redis',
     buckets=(0.0005, 0.001, .005, .01))
 
 REQUEST_TIME = Histogram(
