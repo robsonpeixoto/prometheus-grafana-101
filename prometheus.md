@@ -4,6 +4,15 @@
 
 ---
 
+# Quem sou eu
+
+Engenheiro de Software e DevOps na Jusbrasil
+
+- https://twitter.com/robinhopeixoto
+- https://github.com/robsonpeixoto
+
+---
+
 # Porque monitorar?
 
 - Gerir os custos com servidores
