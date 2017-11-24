@@ -3,7 +3,7 @@ global:
 alerting:
   alertmanagers:
     - static_configs:
-      - targets: ['alertmanger:9093']
+      - targets: ['alertmanager:9093']
 
 rule_files:
   - '/etc/prometheus/alert.rules'
