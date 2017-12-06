@@ -29,11 +29,19 @@ Engenheiro de Software e DevOps na Jusbrasil
 
 # Prometheus - monitoring solution
 
+# Arquitetura
+
+---
+
 ![inline](http://127.0.0.1:8000/assets/architecture.png)
 
 ---
 
 # Hands On
+
+---
+
+> [https://github.com/robsonpeixoto/prometheus-grafana-101](https://github.com/robsonpeixoto/prometheus-grafana-101)
 
 ---
 
