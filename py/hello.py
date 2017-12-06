@@ -40,6 +40,7 @@ INPROGRESS_REQUEST = Gauge(
 @INPROGRESS_REQUEST.track_inprogress()
 def hello():
     with REDIS_TIME.time():
+        REDIS_COUNT.inc()
         count = redis.incr('hits')
     time.sleep(random.uniform(0.01, 0.4))
     return 'Essa página foi vista {} vezes\n'.format(count)
